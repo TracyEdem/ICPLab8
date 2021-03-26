@@ -1,27 +1,130 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
-void LinearIndx(){
+const int N=32;
+
+void LinearIndx(int i,int j,int arrayA[][N],int arrayB[],int size_B){
+        int value;
+        for(int x=0;x<N;x++){
+            for(int y=0;y<N;y++){
+                if(x==i && y==j){
+                   value= arrayA[i][j];
+                }
+            }
+        }
+
+
+        for(int a=0;a<size_B;a++){
+            if(arrayB[a]==value){
+                cout<<"The entry is: "<<value<<endl;
+                cout<<"The index of the entry in B is: "<<a<<endl;
+            }
+        }
+
 }
 
-void InverseIndx(){
+void InverseIndx(int I,int arrayB[],int size_B,int arrayA[][N]){
+    int value;
+    for(int a=0;a<size_B;a++){
+        if(a==I){
+            value=arrayB[a];
+        }
+    }
+    for(int x=0;x<N;x++){
+            for(int y=0;y<N;y++){
+                    if(arrayA[x][y]==value){
+                        cout<<"The index i is: "<<x<<endl;
+                        cout<<"The index j is: "<<y<<endl;
+                        cout<<"The value there is: "<<value<<endl;
+                    }
+            }
+    }
 }
 
 int main(){
-   int N;
-   
-   cout<<"Enter the number of rows(NB:the number of rows=number of columns: "<<endl;
-   cin>>N;
-   
+   int value=0;
+   int random;
+
    int A[N][N];
-   
-   for(int i=0;i<=N;i++){
-		for(int j=0;j<=N;j++){
-			if(i<=j){
-			   cout<<'o'<<endl;
+   int length = sizeof(A)/N;
+   int B[length];
+
+
+   for(int i=0;i<N;i++){
+		for(int j=0;j<N;j++){
+                if(j<=i){
+                    random = rand() % 1000;
+                    A[i][j]=random;
+                    B[value]=A[i][j];
+                    cout<<" "<<A[i][j]<<" ";
+                    value++;
 			}
 		}
+		cout<<"\n";
    }
-   
- return 0;  
+
+   cout<<"\n";
+
+   int C[N][N];
+   int rem=(N*N)-value;
+   int counter= 1;
+
+    cout<<"ARRAY C"<<endl;
+    for(int i=0; i<N;i++){
+     for(int j=0;j<N;j++){
+       if(counter<=(rem+N)){
+       C[i][j] = B[i*N+j];
+       cout<<C[i][j]<<" "<<",";
+       counter++;
+       }
+       else{
+        break;
+       }
+     }
+   }
+   cout<<"\n"<<"\n";
+
+
+
+   cout<<"\n"<<"The first 20 elements of A and their indices are: "<<endl;
+   int l=0;
+
+    for(int a=0;a<N;a++){
+     for(int b=0;b<N;b++){
+          if(l<20){
+           cout<<"A["<<a<<","<<b<<"] : ";
+           cout << A[a][b] << ","<<endl;
+          }
+          l++;
+     }
+        }
+
+   int i=0;
+   cout<<"\n"<<"The first 20 elements of B and their indices are are: "<<endl;
+   while(i<20){
+        cout<<"B["<<i<<"] : ";
+        cout << B[i] << ","<<endl;
+        i++;
+   }
+
+   cout<<"\n"<<"\n"<<"The first 20 elements of C and their indices are: "<<endl;
+   int j=0;
+
+    for(int a=0;a<N;a++){
+     for(int b=0;b<N;b++){
+          if(j<20){
+           cout<<"C["<<a<<","<<b<<"] : ";
+           cout << C[a][b] << ","<<endl;
+          }
+          j++;
+     }
+        }
+
+  cout<<"\n";
+
+   LinearIndx(10,12,A,B,length);
+  // InverseIndx(9,B,length,A);
+
+ return 0;
 }
