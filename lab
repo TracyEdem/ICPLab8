@@ -124,7 +124,7 @@ int main(){
   cout<<"\n";
 
    LinearIndx(10,12,A,B,length);
-  // InverseIndx(9,B,length,A);
+   InverseIndx(9,B,length,A);
 
  return 0;
 }
